@@ -1,5 +1,3 @@
-using Unity.Hierarchy;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,9 +21,9 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         //Makes it so the player moves forward or backward:
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
-        // Makes it so the player rotates to the right:
-        transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * horizontalInput);
+        // Makes it so the player rotates to the left or right:
+        transform.Translate(Vector3.left * Time.deltaTime * turnSpeed * verticalInput);
     
     }
    
