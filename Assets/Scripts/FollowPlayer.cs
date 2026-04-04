@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RotateCamera : MonoBehaviour
+public class FollowPlayer : MonoBehaviour
 {
     public float rotationSpeed;
     public Transform player;
