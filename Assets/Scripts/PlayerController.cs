@@ -21,10 +21,9 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         //Makes it so the player moves forward or backward:
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * horizontalInput);
-        // Makes it so the player rotates to the left or right:
-        transform.Translate(Vector3.left * Time.deltaTime * turnSpeed * verticalInput);
-    
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * -horizontalInput);
+        // Makes it so the player rotates to the right:
+        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * verticalInput);
     }
    
    
