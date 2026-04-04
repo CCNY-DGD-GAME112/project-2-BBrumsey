@@ -15,11 +15,13 @@ public class RotateCamera : MonoBehaviour
     {
 
         transform.position = player.position;
-        if (Input.GetKey(KeyCode.Q)){
+        if (Input.GetKey(KeyCode.Q))
+        {
             // Rotates the camera to the left:
             transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.E)){
+        if (Input.GetKey(KeyCode.E))
+        {
             // Rotates the camera to the right
             transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
 
@@ -27,3 +29,4 @@ public class RotateCamera : MonoBehaviour
         }
     }
 }
+
