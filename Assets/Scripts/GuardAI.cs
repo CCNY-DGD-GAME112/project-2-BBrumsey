@@ -6,50 +6,63 @@ public class GuardAI : Enemy
 {
     public Transform[] waypoints;
     private int currentWaypoint = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        StartCoroutine(Patrol());
+        if (waypoints.Length > 0)
+        {
+            StartCoroutine(Patrol());
+        }
+        else
+        {
+            Debug.LogWarning("No waypoints assigned to GuardAI.");
+        }
     }
 
-     IEnumerator Patrol()
+    IEnumerator Patrol()
     {
         while (true)
         {
             Transform target = waypoints[currentWaypoint];
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, target.position) < 0.2f)
+            while (Vector3.Distance(transform.position, target.position) > 0.2f)
             {
-                currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
-                yield return new WaitForSeconds(1);
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    target.position,
+                    speed * Time.deltaTime
+                );
+
+                yield return null;
             }
-            yield return null;
+
+            currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+            yield return new WaitForSeconds(1f);
         }
     }
 
     public override void DetectPlayer()
     {
-         RaycastHit hit;
-        if ((Physics.Raycast(transform.position, transform.forward, out hit, visionRange)))
+        RaycastHit hit;
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.5f;
 
+        if (Physics.Raycast(rayOrigin, transform.forward, out hit, visionRange))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 Debug.Log("Player spotted!");
             }
         }
-
     }
-    // Update is called once per frame
+
     void Update()
     {
         DetectPlayer();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

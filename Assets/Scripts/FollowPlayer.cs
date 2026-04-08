@@ -2,31 +2,29 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public float rotationSpeed;
     public Transform player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float rotationSpeed = 100f;
+
+    private Vector3 offset;
+
     void Start()
     {
-
+        offset = transform.position - player.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-
-        transform.position = player.position;
         if (Input.GetKey(KeyCode.Q))
         {
-            // Rotates the camera to the left:
-            transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
+            offset = Quaternion.AngleAxis(-rotationSpeed * Time.deltaTime, Vector3.up) * offset;
         }
+
         if (Input.GetKey(KeyCode.E))
         {
-            // Rotates the camera to the right
-            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-
-
+            offset = Quaternion.AngleAxis(rotationSpeed * Time.deltaTime, Vector3.up) * offset;
         }
+
+        transform.position = player.position + offset;
+        transform.LookAt(player);
     }
 }
-

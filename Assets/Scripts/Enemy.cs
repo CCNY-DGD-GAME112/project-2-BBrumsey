@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 2;
+    public float speed = 5;
     public float visionRange = 5;
     public virtual void DetectPlayer()
     {
