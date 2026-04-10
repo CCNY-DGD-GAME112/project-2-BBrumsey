@@ -7,15 +7,21 @@ public class GuardAI : Enemy
     public Transform[] waypoints;
     private int currentWaypoint = 0;
 
+    private float lockedY;
+    private float lockedZ;
+
     void Start()
     {
-        if (waypoints.Length > 0)
+        lockedY = transform.position.y;
+        lockedZ = transform.position.z;
+
+        if (waypoints.Length >= 2)
         {
             StartCoroutine(Patrol());
         }
         else
         {
-            Debug.LogWarning("No waypoints assigned to GuardAI.");
+            Debug.LogWarning("GuardAI needs 2 waypoints assigned.");
         }
     }
 
@@ -25,13 +31,15 @@ public class GuardAI : Enemy
         {
             Transform target = waypoints[currentWaypoint];
 
-            while (Vector3.Distance(transform.position, target.position) > 0.2f)
+            while (Mathf.Abs(transform.position.x - target.position.x) > 0.05f)
             {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    target.position,
+                float newX = Mathf.MoveTowards(
+                    transform.position.x,
+                    target.position.x,
                     speed * Time.deltaTime
                 );
+
+                transform.position = new Vector3(newX, lockedY, lockedZ);
 
                 yield return null;
             }
@@ -64,7 +72,12 @@ public class GuardAI : Enemy
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            PlayerRespawn playerRespawn = other.GetComponent<PlayerRespawn>();
+
+            if (playerRespawn != null)
+            {
+                playerRespawn.Respawn();
+            }
         }
     }
 }

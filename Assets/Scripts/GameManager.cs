@@ -1,23 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public float timeLimit = 20f;
-    private float timeRemaining;
-
+    public float elapsedTime = 0f;
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI winText;
+    public TextMeshProUGUI bestTimeText;
+    public GameObject restartButton;
+
+    private bool isRunning = true;
+    private bool hasWon = false;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -27,52 +29,101 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        timeRemaining = timeLimit;
+        if (winText != null)
+        {
+            winText.gameObject.SetActive(false);
+        }
+
+        if (restartButton != null)
+        {
+            restartButton.SetActive(false);
+        }
+
+        UpdateTimerDisplay();
+        UpdateBestTimeDisplay();
     }
 
     void Update()
     {
-        if (timeRemaining > 0)
+        if (isRunning && !hasWon)
         {
-            timeRemaining -= Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            UpdateTimerDisplay();
+        }
+    }
 
-            if (timerText != null)
+    void UpdateTimerDisplay()
+    {
+        if (timerText != null)
+        {
+            timerText.text = "Timer: " + GetFormattedTime();
+        }
+    }
+
+    public string GetFormattedTime()
+    {
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+
+        return minutes + ":" + seconds.ToString("00");
+    }
+
+    public void StopTimer()
+    {
+        isRunning = false;
+    }
+
+    public void WinGame()
+    {
+        hasWon = true;
+        StopTimer();
+
+        string finalTime = GetFormattedTime();
+
+        if (winText != null)
+        {
+            winText.gameObject.SetActive(true);
+            winText.text = "YOU WIN!\nFinal Time: " + finalTime;
+        }
+
+        if (restartButton != null)
+        {
+            restartButton.SetActive(true);
+        }
+
+        float bestTime = PlayerPrefs.GetFloat("BestTime", Mathf.Infinity);
+
+        if (elapsedTime < bestTime)
+        {
+            PlayerPrefs.SetFloat("BestTime", elapsedTime);
+            PlayerPrefs.Save();
+        }
+
+        UpdateBestTimeDisplay();
+    }
+
+    void UpdateBestTimeDisplay()
+    {
+        if (bestTimeText != null)
+        {
+            float bestTime = PlayerPrefs.GetFloat("BestTime", Mathf.Infinity);
+
+            if (bestTime == Mathf.Infinity)
             {
-                timerText.text = "Timer: " + Mathf.Ceil(timeRemaining).ToString();
+                bestTimeText.text = "Best Time: --:--";
+            }
+            else
+            {
+                int minutes = Mathf.FloorToInt(bestTime / 60);
+                int seconds = Mathf.FloorToInt(bestTime % 60);
+
+                bestTimeText.text = "Best Time: " + minutes + ":" + seconds.ToString("00");
             }
         }
-        else
-        {
-            timeRemaining = 0;
-
-            if (timerText != null)
-            {
-                timerText.text = "Timer: 0";
-            }
-        }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void RestartGame()
     {
-        timerText = FindFirstObjectByType<TextMeshProUGUI>();
-    }
-
-    public void CollectTreasure()
-    {
-        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (nextScene < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextScene);
-        }
-        else
-        {
-            Debug.Log("No more scenes in Build Settings.");
-        }
-    }
-
-    void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
