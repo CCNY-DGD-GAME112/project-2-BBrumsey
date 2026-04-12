@@ -4,7 +4,7 @@ public class GuardAI : Enemy
 {
     public float leftX;
     public float rightX;
-    public float waitTime = 1f;
+    public float waitTime = 0.5f;
 
     private bool movingRight = true;
     private float waitCounter = 0f;
@@ -19,11 +19,6 @@ public class GuardAI : Enemy
 
     void Update()
     {
-        Patrol();
-    }
-
-    void Patrol()
-    {
         if (waitCounter > 0)
         {
             waitCounter -= Time.deltaTime;
@@ -32,12 +27,7 @@ public class GuardAI : Enemy
 
         float targetX = movingRight ? rightX : leftX;
 
-        float newX = Mathf.MoveTowards(
-            transform.position.x,
-            targetX,
-            speed * Time.deltaTime
-        );
-
+        float newX = Mathf.MoveTowards(transform.position.x, targetX, speed * Time.deltaTime);
         transform.position = new Vector3(newX, lockedY, lockedZ);
 
         if (Mathf.Abs(transform.position.x - targetX) < 0.05f)
