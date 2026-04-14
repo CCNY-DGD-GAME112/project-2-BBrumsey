@@ -1,17 +1,10 @@
 using UnityEngine;
 
-public class GameData : MonoBehaviour
+public static class GameData 
 {
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        public static float finalTime;
+        public static float bestTime;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
+
+
