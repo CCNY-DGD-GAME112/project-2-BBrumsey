@@ -32,7 +32,7 @@ public class WinSceneManager : MonoBehaviour
             Destroy(GameManager.Instance.gameObject);
         }
 
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void BackToTitle()
@@ -42,6 +42,6 @@ public class WinSceneManager : MonoBehaviour
             Destroy(GameManager.Instance.gameObject);
         }
 
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("Title Scene");
     }
 }

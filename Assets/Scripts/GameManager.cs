@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         GameData.bestTime = savedBestTime;
 
-        SceneManager.LoadScene("WinScene");
+        SceneManager.LoadScene("Win Scene");
     }
 
     public void ResetRun()

@@ -6,7 +6,7 @@ public class Treasure : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.WinGame();
+            GameManager.Instance.LoadNextLevel();
             Destroy(gameObject);
         }
     }
