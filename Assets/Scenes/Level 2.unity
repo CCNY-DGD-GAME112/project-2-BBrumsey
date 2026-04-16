@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db50b59e4ce1034bbdf82edf08fa9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuardAI
-  speed: 9
+  speed: 7.5
   visionRange: 5
   leftX: -22
   rightX: -18
@@ -619,7 +619,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 92498e1cb863283459863bad759f165c, type: 2}
+  - {fileID: 2100000, guid: 1c1b350990be4604fa0fc802f2fa8c2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db50b59e4ce1034bbdf82edf08fa9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuardAI
-  speed: 11
+  speed: 7.5
   visionRange: 5
   leftX: -12
   rightX: -8
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db50b59e4ce1034bbdf82edf08fa9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuardAI
-  speed: 7
+  speed: 7.5
   visionRange: 5
   leftX: -32
   rightX: -28

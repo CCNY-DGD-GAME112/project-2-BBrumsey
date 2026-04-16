@@ -5,7 +5,7 @@ public class TitleSceneManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void QuitGame()
