@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private float speed = 5f;
     private float turnSpeed = 10f;
     public float jumpForce = 5f;
+    public AudioClip jumpSound;
+    private AudioSource audioSource;
 
     private bool isGrounded;
     private Rigidbody rb;
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            audioSource.PlayOneShot(jumpSound);
         }
     }
 

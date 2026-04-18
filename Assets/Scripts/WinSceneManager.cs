@@ -12,6 +12,7 @@ public class WinSceneManager : MonoBehaviour
         int finalMinutes = Mathf.FloorToInt(GameData.finalTime / 60);
         int finalSeconds = Mathf.FloorToInt(GameData.finalTime % 60);
         finalTimeText.text = "Final Time: " + finalMinutes + ":" + finalSeconds.ToString("00");
+        MusicManager.instance.PlayVictoryMusic();
 
         if (GameData.bestTime == Mathf.Infinity)
         {
