@@ -51,6 +51,11 @@ public class WinSceneManager : MonoBehaviour
             MusicManager.instance.PlayGameplayMusic();
         }
 
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+        }
+
         SceneManager.LoadScene("Title Scene");
     }
 }

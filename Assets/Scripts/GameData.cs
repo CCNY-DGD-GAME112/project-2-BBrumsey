@@ -11,7 +11,8 @@ public static class GameData
     */
 
     public static float finalTime;
-        public static float bestTime;
+    public static float bestTime;
+
     }
 
 
