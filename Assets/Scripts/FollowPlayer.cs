@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    /*
+    Follow Player:
+    This script makes the camera follow the player.
+    It also lets the camera rotate around the player
+    when Q or E is pressed.
+    */
+
     public Transform player;
     public float rotationSpeed = 100f;
 

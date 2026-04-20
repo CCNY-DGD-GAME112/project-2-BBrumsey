@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class GuardAI : Enemy
 {
+
+    /*
+Guard AI:
+This script makes the guard move back and forth
+between two points. If the player touches the guard,
+the player is sent back to the respawn point.
+*/
     public float leftX;
     public float rightX;
     public float waitTime = 0.5f;
 
     private bool movingRight = true;
-    private float waitCounter = 0f;
+    private float waitCounter = 0;
     private float lockedY;
     private float lockedZ;
 

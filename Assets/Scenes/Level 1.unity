@@ -5722,7 +5722,7 @@ MonoBehaviour:
   horizontalInput: 20
   verticalInput: 40
   jumpForce: 5
-  jumpSound: {fileID: 8300000, guid: c770814ee1832c141894eb9edb94bd9a, type: 3}
+  jumpSound: {fileID: 8300000, guid: d7b58d6751277dc41bd92590e7640153, type: 3}
 --- !u!114 &773123834
 MonoBehaviour:
   m_ObjectHideFlags: 0

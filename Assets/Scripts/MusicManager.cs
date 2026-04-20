@@ -1,7 +1,13 @@
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
-{
+{  
+    /*
+    Music Manager:
+    Controls the background music for the game.
+    Uses a singleton so only one exists and music continues between scenes.
+    */
+
     public static MusicManager instance;
 
     public AudioClip gameplayMusic;

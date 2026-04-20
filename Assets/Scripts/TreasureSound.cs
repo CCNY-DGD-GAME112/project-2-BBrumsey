@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class TreasureSound : MonoBehaviour
 {
+
+    /*
+    Treasure Sound:
+    This script changes the treasure sound volume
+    based on how close the player is to it.
+    */
+
     public Transform player;
     public float maxDistance = 10;
     public float minDistance = 2;

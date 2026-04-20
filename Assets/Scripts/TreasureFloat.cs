@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class TreasureFloat : MonoBehaviour
 {
+
+    /*
+    Treasure Float:
+    This script makes the treasure float up and down
+    and slowly rotate to make it stand out.
+    */
+
     public float floatHeight = 0.25f;
     public float floatSpeed = 2;
     public float rotateSpeed = 60;

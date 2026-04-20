@@ -4,6 +4,14 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+
+    /*
+    Game Manager:
+    This script controls the game timer and level progression.
+    It keeps track of the player’s time, loads the next level,
+    and saves the best time when the player wins.
+    */
+
     public static GameManager Instance;
 
     public float elapsedTime = 0f;

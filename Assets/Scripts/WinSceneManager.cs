@@ -4,6 +4,14 @@ using TMPro;
 
 public class WinSceneManager : MonoBehaviour
 {
+
+    /*
+    Win Scene Manager:
+    This script shows the player’s final time
+    and best time on the win screen.
+    It also controls the replay and title buttons.
+    */
+
     public TextMeshProUGUI finalTimeText;
     public TextMeshProUGUI bestTimeText;
 
@@ -38,9 +46,9 @@ public class WinSceneManager : MonoBehaviour
 
     public void BackToTitle()
     {
-        if (GameManager.Instance != null)
+        if (MusicManager.instance != null)
         {
-            Destroy(GameManager.Instance.gameObject);
+            MusicManager.instance.PlayGameplayMusic();
         }
 
         SceneManager.LoadScene("Title Scene");

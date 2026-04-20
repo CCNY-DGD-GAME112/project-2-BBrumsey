@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    /*
+    Player Controller:
+    This script controls the player’s movement and jumping.
+    It reads keyboard input to move the player
+    and plays a sound when the player jumps.
+    */
+
     public float horizontalInput;
     public float verticalInput;
     private float speed = 5f;
-    private float turnSpeed = 10f;
+    private float moveSpeed = 10f;
     public float jumpForce = 5f;
     public AudioClip jumpSound;
     private AudioSource audioSource;
@@ -26,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         // Moving forward, backwards, left and right
         transform.Translate(Vector3.forward * Time.deltaTime * speed * -horizontalInput);
-        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * verticalInput);
+        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed * verticalInput);
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
